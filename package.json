@@ -31,7 +31,7 @@
     "browserify": "^16.2.2",
     "derequire": "^2.0.6",
     "shelljs": "^0.8.2",
-    "spacetime": "^4.2.2",
+    "spacetime": "^4.4.0",
     "tap-dancer": "0.0.3",
     "tape": "^4.9.1"
   }
