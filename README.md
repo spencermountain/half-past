@@ -1,2 +1,5 @@
-# nlp-date
-advanced date-parsing with nlp-compromise
+
+WIP 
+
+
+MIT
