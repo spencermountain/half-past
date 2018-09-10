@@ -1,14 +1,19 @@
 
-WIP
+**WIP**
 
-here be the unglorious javascript mash-up of [spacetime](https://github.com/spencermountain/spacetime)
-and [compromise](https://github.com/spencermountain/compromise) and all the bugs who dare enter thus
+rule-based interpreter for natural-language date-forms.
 
-never mind all the other details
+an opinionated-but-configurable mash-up of [spacetime](https://github.com/spencermountain/spacetime)
+and [compromise](https://github.com/spencermountain/compromise)
+
+you've been warned!
 
 
-muckup such-like:
+### IF YOU DARE:
+`npm install nlp-date`
+
 ```js
+var nlpDate = require('nlp-date')
 //apply plugin
 nlp.plugin(nlpDate)
 
@@ -50,45 +55,48 @@ let context = {
 nlp('the end of next week').dates().parse(context)
 /*
 [{
-  start:{},
-  end:{},
-  interval:{},
+  start:SpacetimeObject,
+  end:SpacetimeObject,
+  interval:{
+    unit:'month',
+    amount:3
+  },
 }]
 */
 
 ```
 ### What it does:
-* explicit date-forms `"January 8th"`
-* numeric/ISO date-forms `"1999-12-25"`
-* NL time-of-day `"7:30pm"`
-* NL timezone `"5pm eastern time"`
-* named holidays `"christmas"`
+* `"January 8th"` explicit date-forms
+* `"1999-12-25"`  numeric/ISO date-forms
+* `"7:30pm"` NL time-of-day
+* `"5pm eastern time"` NL timezone
+* `"christmas"` named holidays
 
-* this/next/last logic `"next friday"`
-* end/start/middle logic `"end of the month"`
-* 'punt' by a duration `"three days after June 4rth"`
+*  `"next friday"` this/next/last logic
+* `"end of the month"` end/start/middle logic
 
-* seasons
-* financial quarters
-* academic semesters
+* `between June 5th and 7th` range logic
+* `"three days after June 4rth"` 'punt' by a duration
 
-* repetitions by interval `every monday`
+* `this winter` seasons -
+* `q2 2020` financial quarters -
+* `second semester 2019` academic semesters -
 
-* ignore false-positives `April O'neil`
+* `every monday` repetitions by interval
+
+* `in April O'neil's house` ignore false-positives
 
 * handle DST/leap-year/hemisphere/leap-second logic (from [spacetime](https://github.com/spencermountain/spacetime) )
 * handle tokenization/normalization/punctuation-handling (from [compromise](https://github.com/spencermountain/compromise) )
 
 ### What it doesn't do:
-* distant dates for astronomical holidays `'easter 1440'`
-* millisecond, or epoch-time as dates `1536602449137`
-* force interpretation as british/american (tries both!)
+* `'easter 1440'` distant dates for astronomical holidays
+* `1536602449137` millisecond, or epoch-time as dates
+* force interpretation of british/american (always tries both!)
+* `sometime in June` decide on a soft-date
 
 ### Examples:
 ```
-   Not a Date
-    ✓ false positives
-
   explicit templates
     ✓ "march 2nd"
     ✓ "2 march"
@@ -239,37 +247,47 @@ duration-implicit range (start → end)
 ### Repeating dates
 ```
 Recurring dates
-  every day
-  every thursday
-  every other day
-  every other wednesday
-  each monday at 9am
+  ✓ every day
+  ✓ every thursday
+  ✓ every other day
+  ✓ every other wednesday
+  ✓ each monday at 9am
 ```
 
-
-### Calendar-jumping
+### Calendar-hopping
 ```
 punted dates
-  4 days from now       ✓
-  three weeks from today       ✓
+  ✓ 4 days from now
+  ✓ three weeks from today
 
 relative range
-  two weeks later
+  ✓ two weeks later
 
 Implicit range -- (assumed now-to-then)
-  by the end of the year
-  before christmas
+  ✓ by the end of the year
+  ✓ before christmas
 
 soft range - not fully day-defined
-  middle of the month
-  start of next week
-  in august
-  this spring
+  ✓ middle of the month
+  ✓ start of next week
+  ✓ in august
+  ✓ this spring
 
 punted week with day
-  two saturdays from now  ✓
-  the friday after next  ✓  
+  ✓ two saturdays from now
+  ✓ the friday after next  
 ```
 
+### See also
+* [Sugarjs](https://sugarjs.com/dates/) - by Andrew Plummer
+* [Chrono](https://github.com/wanasit/chrono) - by Wanasit Tanakitrungruang
+* [Datejs](http://www.datejs.com/) - by Geoffrey McGill
+
+#### Other languages
+* Clojure - [Duckling](https://duckling.wit.ai/) - by Facebook
+* Java - [Natty](http://natty.joestelmach.com/) - by Joe Stelmach
+* Go -[When](https://github.com/olebedev/when) - by Oleg Lebedev
+* Python [dateparser](https://github.com/scrapinghub/dateparser) - by ScrapingHub
+* API [Luis](https://www.luis.ai/home) - by Microsoft
 
 MIT
