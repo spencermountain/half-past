@@ -40,7 +40,7 @@ you've been warned!
 * `1536602449137` millisecond, or epoch-time as dates
 * force interpretation of british/american (always tries both!)
 * `sometime in June` decide on a soft-date
-
+* configurable 'last monday' logic
 
 ### Usage:
 ```js
@@ -69,23 +69,23 @@ let context = {
   holidays: {
     'may day': '2018-06-01', // throws-away year info
   },
-  seasons: [ // defaults to northern-hemisphere (sorry!)
-    '2018-03-01', //spring
-    '2019-01-01', //summer
-    '2019-04-01', //winter
-    '2019-07-01', //fall
-  ],
-  quarters: [
-    '2018-01-01', //q1
-    '2019-04-01', //q2
-    '2019-07-01', //q3
-    '2019-09-01', //q4
-  ],
-  semesters: [ // https://en.wikipedia.org/wiki/Academic_term
-    '2018-09-01',
-    '2019-01-01',
-    '2019-04-01',
-  ],
+  // seasons: [ // defaults to northern-hemisphere (sorry!)
+  //   '2018-03-01', //spring
+  //   '2019-01-01', //summer
+  //   '2019-04-01', //winter
+  //   '2019-07-01', //fall
+  // ],
+  // quarters: [
+  //   '2018-01-01', //q1
+  //   '2019-04-01', //q2
+  //   '2019-07-01', //q3
+  //   '2019-09-01', //q4
+  // ],
+  // semesters: [ // https://en.wikipedia.org/wiki/Academic_term
+  //   '2018-09-01',
+  //   '2019-01-01',
+  //   '2019-04-01',
+  // ],
 }
 nlp('the end of next week').dates().parse(context)
 /*

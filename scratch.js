@@ -8,11 +8,11 @@ const plugin = require('./src/plugin')
 nlp.plugin(plugin);
 
 let context = {
-  today: '2023-12-03'
+  // today: '2023-12-03'
 };
-nlpDate(nlp('last season'), context)
-nlpDate(nlp('this season'), context)
-nlpDate(nlp('next season'), context)
+nlpDate(nlp('last wednesday'), context)
+nlpDate(nlp('this wednesday'), context)
+nlpDate(nlp('next wednesday'), context)
 
 // const spacetime = require('spacetime')
 // let d = spacetime.now()
