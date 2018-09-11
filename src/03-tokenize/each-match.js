@@ -62,6 +62,7 @@ const logic = function(doc, context) {
       }
     }
   }
+
   //else, try whole thing
   let unit = parseDate(doc, context)
   if (unit && unit.isValid()) {

@@ -13,10 +13,11 @@ const seasonNames = {
 }
 
 class Season {
-  constructor(doc, context) {
-    let season = doc.match('(spring|summer|winter|fall|autumn|springtime|wintertime|summertime)')
-    let str = season.out('normal')
-    if (season.found && seasonNames.hasOwnProperty(str)) {
+  constructor(str, context) {
+    this.d = spacetime(context.today, context.timezone)
+    // let season = doc.match('(spring|summer|winter|fall|autumn|springtime|wintertime|summertime)')
+    // let str = season.out('normal')
+    if (str && seasonNames.hasOwnProperty(str)) {
       this.i = seasonNames[str]
       this.d = spacetime(context.seasons[this.i], context.timezone)
       this.d.startOf('day')
@@ -41,6 +42,25 @@ class Season {
   }
   last() {
     return this.d.minus(1, 'year')
+  }
+  //go from q1 to q2
+  nextOne() {
+    let startDay = this.context.seasons[(this.i + 1) % 3]
+    let prev = this.d.clone()
+    this.d.set(startDay)
+    if (this.d.isBefore(prev)) {
+      this.d.add(1, 'year')
+    }
+    return this
+  }
+  lastOne() {
+    let startDay = this.context.seasons[(this.i - 1) % 3]
+    let prev = this.d.clone()
+    this.d.set(startDay)
+    if (this.d.isAfter(prev)) {
+      this.d.subtract(1, 'year')
+    }
+    return this
   }
   isValid() {
     return this.d && this.d.isValid()

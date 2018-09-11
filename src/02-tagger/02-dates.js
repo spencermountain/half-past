@@ -4,6 +4,8 @@ const dateTagger = function(doc) {
 
   doc.match('(spring|summer|winter|fall|autumn|springtime|wintertime|summertime)').match('#Noun').tag('Season', here)
   doc.match('(q1|q2|q3|q4)').tag('FinancialQuarter', here)
+  doc.match('(this|next|last|current) quarter').tag('FinancialQuarter', here)
+  doc.match('(this|next|last|current) season').tag('Season', here)
 
   if (doc.has('#Date')) {
     //friday to sunday

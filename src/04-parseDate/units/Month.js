@@ -1,13 +1,12 @@
 const spacetime = require('spacetime')
 
 class Month {
-  constructor(doc, context) {
-    let month = doc.match('#Month')
-    if (month.found) {
-      month = month.out('normal')
-      this.d = spacetime(context.today, context.timezone)
-      this.d.month(month).startOf('month')
+  constructor(month, context) {
+    this.d = spacetime(context.today, context.timezone)
+    if (month !== null) {
+      this.d.month(month)
     }
+    this.d.startOf('month')
   }
   start() {
     return this.d.clone()
@@ -18,11 +17,21 @@ class Month {
   middle() {
     return this.d.clone().add(2, 'weeks')
   }
+  // 'next' refers to next february, not next month
   next() {
-    return this.d.clone().add(1, 'month')
+    return this.d.clone().add(1, 'year')
   }
   last() {
-    return this.d.clone().subtract(1, 'month')
+    return this.d.clone().subtract(1, 'year')
+  }
+  // february → march
+  nextOne() {
+    this.d.add(1, 'month')
+    return this
+  }
+  lastOne() {
+    this.d.subtract(1, 'month')
+    return this
   }
   isValid() {
     return this.d && this.d.isValid()

@@ -1,13 +1,12 @@
 const spacetime = require('spacetime')
 
 class Weekday {
-  constructor(doc, context) {
-    let weekday = doc.match('#WeekDay')
-    if (weekday.found) {
-      weekday = weekday.out('normal')
-      this.d = spacetime(context.today, context.timezone)
-      this.d.day(weekday).startOf('day')
+  constructor(str, context) {
+    this.d = spacetime(context.today, context.timezone)
+    if (str) {
+      this.d.day(str)
     }
+    this.d.startOf('day')
   }
   start() {
     return this.d.clone()
@@ -23,6 +22,14 @@ class Weekday {
   }
   last() {
     return this.d.clone().subtract(7, 'days')
+  }
+  nextOne() {
+    this.d.add(1, 'week')
+    return this
+  }
+  lastOne() {
+    this.d.subtract(1, 'week')
+    return this
   }
   isValid() {
     return this.d && this.d.isValid()

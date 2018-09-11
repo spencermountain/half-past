@@ -11,7 +11,7 @@ const oneDate = function(ts, context) {
   // this month
   let unit = relativeUnit(ts, context)
   if (unit && unit.isValid()) {
-    // unit = applyShift(unit, shift)
+    unit = applyShift(unit, shift)
     return unit
   }
 

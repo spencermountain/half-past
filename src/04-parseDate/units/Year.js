@@ -1,12 +1,13 @@
 const spacetime = require('spacetime')
 
 class Year {
-  constructor(doc, context) {
-    let num = doc.match('#Year')
-    if (num.found) {
-      num = num.out('normal')
-      this.d = spacetime(context.today, context.timezone).year(num).startOf('year')
+  constructor(str, context) {
+    this.d = spacetime(context.today, context.timezone)
+    // let num = doc.match('#Year')
+    if (str) {
+      this.d.year(str)
     }
+    this.d.startOf('year')
   }
   start() {
     return this.d.clone()
@@ -22,6 +23,14 @@ class Year {
   }
   last() {
     return this.d.clone().subtract(1, 'year')
+  }
+  nextOne() {
+    this.d.add(12, 'months')
+    return this
+  }
+  lastOne() {
+    this.d.subtract(12, 'months')
+    return this
   }
   isValid() {
     return this.d && this.d.isValid()
