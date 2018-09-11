@@ -10,7 +10,7 @@ const Weekday = require('./units/Weekday')
 // when a unit of time is spoken of as 'this month' - instead of 'february'
 const findRelativeUnit = function(doc, context) {
   //this month, last quarter, next year
-  let m = doc.match('this? (next|last|current|this) (weekday|week|month|quarter|season|year)')
+  let m = doc.match('this? (next|last|previous|current|this) (weekday|week|month|quarter|season|year)')
   if (m.found === true) {
     let str = m.lastTerm().out('normal')
     if (units.hasOwnProperty(str)) {
@@ -18,7 +18,7 @@ const findRelativeUnit = function(doc, context) {
       //handle next/last logic
       if (m.has('next') === true) {
         return unit.nextOne()
-      } else if (m.has('last') === true) {
+      } else if (m.has('(last|previous)') === true) {
         return unit.lastOne()
       }
       return unit
@@ -26,13 +26,13 @@ const findRelativeUnit = function(doc, context) {
   }
 
   //try this version - 'next friday, last thursday'
-  m = doc.match('this? (next|last|current|this) (monday|tuesday|wednesday|thursday|friday|saturday|sunday)')
+  m = doc.match('this? (next|last|previous|current|this) (monday|tuesday|wednesday|thursday|friday|saturday|sunday)')
   if (m.found === true) {
     let str = m.lastTerm().out('normal')
     let unit = new Weekday(str, context)
     if (m.has('next') === true) {
       return unit.nextOne()
-    } else if (m.has('last') === true) {
+    } else if (m.has('(last|previous)') === true) {
       return unit.lastOne()
     }
     return unit

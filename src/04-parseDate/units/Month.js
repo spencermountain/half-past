@@ -1,10 +1,10 @@
 const spacetime = require('spacetime')
 
 class Month {
-  constructor(month, context) {
+  constructor(str, context) {
     this.d = spacetime(context.today, context.timezone)
-    if (month !== null) {
-      this.d.month(month)
+    if (str !== null) {
+      this.d.month(str)
     }
     this.d.startOf('month')
   }
