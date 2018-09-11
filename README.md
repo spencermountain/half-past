@@ -69,7 +69,7 @@ let context = {
   holidays: {
     'may day': '2018-06-01', // throws-away year info
   },
-  seasons: [
+  seasons: [ // defaults to northern-hemisphere (sorry!)
     '2018-03-01', //spring
     '2019-01-01', //summer
     '2019-04-01', //winter

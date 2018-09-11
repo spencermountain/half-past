@@ -7,6 +7,8 @@ const plugin = require('./src/plugin')
 //apply plugin
 nlp.plugin(plugin);
 
-let context = {};
-let doc = nlp('this month')
+let context = {
+  today: '2020-11-11'
+};
+let doc = nlp('this season')
 nlpDate(doc, context)
