@@ -1,7 +1,7 @@
 {
   "name": "nlp-date",
   "version": "0.0.1",
-  "description": "date-parsing with nlp-compromise",
+  "description": "natural-language date-parsing in javascript",
   "main": "./src/index.js",
   "scripts": {
     "watch": "amble ./scratch.js",

@@ -8,63 +8,9 @@ and [compromise](https://github.com/spencermountain/compromise)
 
 you've been warned!
 
-
 ### IF YOU DARE:
 `npm install nlp-date`
 
-```js
-var nlpDate = require('nlp-date')
-//apply plugin
-nlp.plugin(nlpDate)
-
-let context = {
-  //what 'today', or 'now' is
-  now: '2018-09-10T17:28:32.140Z',
-  //our assumed timezone, unless given
-  timezone: 'Canada/Eastern',
-  //set our calendar assumptions
-  days:{
-    start:'8:00am',
-    end:'6:00pm',   
-  },
-  weeks:{
-    start:'monday' //some terrible people disagree with this.
-    end:'friday'
-  },
-  holidays:{
-    'may day':'2018-06-01',//throws-away year info
-  },
-  seasons:[
-    '2018-03-01',//spring
-    '2019-01-01',//summer
-    '2019-04-01',//winter
-    '2019-07-01',//fall
-  ],
-  quarters:[
-    '2018-01-01',//q1
-    '2019-04-01',//q2
-    '2019-07-01',//q3
-    '2019-09-01',//q4
-  ],
-  semesters:[  // https://en.wikipedia.org/wiki/Academic_term
-    '2018-09-01',
-    '2019-01-01',
-    '2019-04-01',
-  ],
-}
-nlp('the end of next week').dates().parse(context)
-/*
-[{
-  start:SpacetimeObject,
-  end:SpacetimeObject,
-  interval:{
-    unit:'month',
-    amount:3
-  },
-}]
-*/
-
-```
 ### What it does:
 * `"January 8th"` explicit date-forms
 * `"1999-12-25"`  numeric/ISO date-forms
@@ -94,6 +40,63 @@ nlp('the end of next week').dates().parse(context)
 * `1536602449137` millisecond, or epoch-time as dates
 * force interpretation of british/american (always tries both!)
 * `sometime in June` decide on a soft-date
+
+### Usage:
+```js
+var nlp = require('compromise')
+var nlpDate = require('nlp-date')
+//apply plugin
+nlp.plugin(nlpDate)
+
+let context = {
+  //what 'today', or 'now' is
+  now: '2018-09-10T17:28:32.140Z', //defaults to Date.now()
+  //our assumed timezone, unless given
+  timezone: 'Canada/Eastern',
+  //set our calendar assumptions
+  days: {
+    start: '8:00am', //colloquial start/end of a day
+    end: '6:00pm',
+  },
+  weeks: {
+    start: 'monday', //some terrible people disagree with this.
+    end: 'friday'
+  },
+  holidays: {
+    'may day': '2018-06-01', //throws-away year info
+  },
+  seasons: [
+    '2018-03-01', //spring
+    '2019-01-01', //summer
+    '2019-04-01', //winter
+    '2019-07-01', //fall
+  ],
+  quarters: [
+    '2018-01-01', //q1
+    '2019-04-01', //q2
+    '2019-07-01', //q3
+    '2019-09-01', //q4
+  ],
+  semesters: [ // https://en.wikipedia.org/wiki/Academic_term
+    '2018-09-01',
+    '2019-01-01',
+    '2019-04-01',
+  ],
+}
+nlp('the end of next week').dates().parse(context)
+/*
+[{
+  start:SpacetimeObject, //you can call .format('iso') or anything you want
+  end:SpacetimeObject,
+  precision:'day',
+  interval:{
+    unit:'month',
+    amount:3
+  },
+}]
+*/
+
+```
 
 ### Examples:
 ```
@@ -286,8 +289,9 @@ punted week with day
 #### Other languages
 * Clojure - [Duckling](https://duckling.wit.ai/) - by Facebook
 * Java - [Natty](http://natty.joestelmach.com/) - by Joe Stelmach
-* Go -[When](https://github.com/olebedev/when) - by Oleg Lebedev
-* Python [dateparser](https://github.com/scrapinghub/dateparser) - by ScrapingHub
-* API [Luis](https://www.luis.ai/home) - by Microsoft
+* Go - [When](https://github.com/olebedev/when) - by Oleg Lebedev
+* Python - [dateparser](https://github.com/scrapinghub/dateparser) - by ScrapingHub
+
+There are also some excellent commercial services for date-parsing, which we've omitted here.
 
 MIT
