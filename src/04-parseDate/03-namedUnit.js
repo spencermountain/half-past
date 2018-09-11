@@ -4,10 +4,11 @@ const Week = require('./units/Week')
 const Weekday = require('./units/Weekday')
 const Season = require('./units/Season')
 const Quarter = require('./units/Quarter')
-//
-const oneDate = function(ts, context) {
+
+const findUnit = function(ts, context) {
   let year = new Year(ts, context)
   if (year.isValid() === true) {
+
     return year
   }
   let month = new Month(ts, context)
@@ -32,4 +33,4 @@ const oneDate = function(ts, context) {
   }
   return null
 }
-module.exports = oneDate
+module.exports = findUnit

@@ -1,4 +1,4 @@
-const logicParse = require('./01-logic')
+const logicParse = require('./each-match')
 
 //
 const tokenize = function(doc, context) {

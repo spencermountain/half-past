@@ -1,4 +1,4 @@
-const oneDate = require('./02-oneDate')
+const parseDate = require('../04-parseDate')
 //
 const logic = function(doc, context) {
   // two explicit dates - 'between friday and sunday'
@@ -54,12 +54,20 @@ const logic = function(doc, context) {
   // 'in june'
   m = doc.match('^(on|during|in) [*]');
   if (m.found) {
-    let unit = oneDate(m, context)
+    let unit = parseDate(m, context)
     if (unit && unit.isValid()) {
       return {
         start: unit.start(),
         end: unit.end()
       }
+    }
+  }
+  //else, try whole thing
+  let unit = parseDate(doc, context)
+  if (unit && unit.isValid()) {
+    return {
+      start: unit.start(),
+      end: unit.end()
     }
   }
   return null

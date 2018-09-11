@@ -11,5 +11,5 @@ let context = {
   now: '2018-09-10T17:28:32.140Z',
 };
 
-let doc = nlp('a week before this summer at 4pm GST')
+let doc = nlp('ninety days after wednesday')
 console.log(nlpDate(doc, context)[0])
