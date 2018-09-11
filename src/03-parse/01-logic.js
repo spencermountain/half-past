@@ -1,4 +1,4 @@
-const oneDate = require('./oneDate')
+const oneDate = require('./02-oneDate')
 //
 const logic = function(doc, context) {
   // two explicit dates - 'between friday and sunday'

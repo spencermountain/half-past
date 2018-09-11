@@ -41,6 +41,7 @@ you've been warned!
 * force interpretation of british/american (always tries both!)
 * `sometime in June` decide on a soft-date
 
+
 ### Usage:
 ```js
 var nlp = require('compromise')
@@ -49,21 +50,24 @@ var nlpDate = require('nlp-date')
 nlp.plugin(nlpDate)
 
 let context = {
-  //what 'today', or 'now' is
-  now: '2018-09-10T17:28:32.140Z', //defaults to Date.now()
-  //our assumed timezone, unless given
+  // what 'today', or 'now' is
+  now: '2018-09-10T17:28:32.140Z', // defaults to Date.now()
+  // our assumed timezone, unless given
   timezone: 'Canada/Eastern',
-  //set our calendar assumptions
+  // set our calendar assumptions
   days: {
-    start: '8:00am', //colloquial start/end of a day
+    start: '8:00am', // colloquial start/end of a day
     end: '6:00pm',
   },
   weeks: {
-    start: 'monday', //some terrible people disagree with this.
+    start: 'monday', // some disagree.
     end: 'friday'
   },
+  casual:{ // amount of time returned in 'after June 5th', etc.
+    weeks:2
+  },
   holidays: {
-    'may day': '2018-06-01', //throws-away year info
+    'may day': '2018-06-01', // throws-away year info
   },
   seasons: [
     '2018-03-01', //spring
@@ -96,6 +100,27 @@ nlp('the end of next week').dates().parse(context)
 }]
 */
 
+```
+
+### How it works
+nlp-date understands natural language date-forms using the following classification:
+
+#### Single dates:
+```
+[two days after]  [the end of]    [next]    [thursday]  [at 2pm]   [EST]
+   'shift'          'section'    'relative'    'unit'    'time'   'timezone'
+
+[6 hours before]  [the start of]  [this]  [quarter]
+```
+
+#### Combined dates
+these single-dates can be interpreted as two dates, that share information
+```
+between [date] and [date]
+[date] to [date]
+before [date]
+after [date]
+in [date]
 ```
 
 ### Examples:
