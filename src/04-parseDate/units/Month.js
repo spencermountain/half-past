@@ -2,7 +2,7 @@ const spacetime = require('spacetime')
 
 class Month {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     if (str !== null) {
       this.d.month(str)
     }

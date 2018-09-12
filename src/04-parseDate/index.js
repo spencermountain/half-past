@@ -7,15 +7,16 @@ const applyShift = require('./_apply-shift')
 const oneDate = function(ts, context) {
   // 2 weeks before...
   let shift = parseShift(ts)
+  ts.delete('#ShiftDate+')
 
-  // this month
+  // 'this month'
   let unit = relativeUnit(ts, context)
   if (unit && unit.isValid()) {
     unit = applyShift(unit, shift)
     return unit
   }
 
-  // wednesday
+  // 'june 5th'
   unit = namedUnit(ts, context)
   if (unit && unit.isValid()) {
     unit = applyShift(unit, shift)

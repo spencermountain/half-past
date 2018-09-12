@@ -14,7 +14,7 @@ const seasonNames = {
 
 class Season {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     if (str && seasonNames.hasOwnProperty(str) === true) {
       this.d.season(seasonNames[str])
     }

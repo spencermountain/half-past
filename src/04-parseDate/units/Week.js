@@ -2,11 +2,11 @@ const spacetime = require('spacetime')
 
 class Week {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     this.d.startOf('week')
   // let counted = doc.match('#Ordinal week (of|in) .')
   // if (counted.found) {
-  //   this.d = spacetime(context.today, context.timezone)
+  //   this.d = spacetime(context.now, context.timezone)
   // }
   }
   start() {

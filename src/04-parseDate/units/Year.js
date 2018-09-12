@@ -2,7 +2,7 @@ const spacetime = require('spacetime')
 
 class Year {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     // let num = doc.match('#Year')
     if (str) {
       this.d.year(str)

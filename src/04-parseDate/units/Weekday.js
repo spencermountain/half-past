@@ -2,7 +2,7 @@ const spacetime = require('spacetime')
 
 class Weekday {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     this.context = context
     if (str) {
       let from = this.d.clone()
@@ -29,9 +29,9 @@ class Weekday {
   last() {
     return this.d.clone().subtract(7, 'days')
   }
-  nextOne() { //this is complicated.
+  nextOne() { //this is complicated. #judgement
     let context = this.context
-    let today = spacetime(context.today, context.timezone)
+    let today = spacetime(context.now, context.timezone)
     //use week-of-year to decide which days are 'next'
     if (today.week() === this.d.week()) {
       this.d.add(1, 'week')
@@ -42,7 +42,7 @@ class Weekday {
     let context = this.context
     this.d.subtract(1, 'week')
     //ok, but ensure 'last monday' is not yesterday.
-    let today = spacetime(context.today, context.timezone)
+    let today = spacetime(context.now, context.timezone)
     if (today.week() === this.d.week()) {
       this.d.subtract(1, 'week')
     }

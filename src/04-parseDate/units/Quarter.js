@@ -10,7 +10,7 @@ const quarterNames = {
 // let q = doc.match('#FinancialQuarter')
 class Quarter {
   constructor(str, context) {
-    this.d = spacetime(context.today, context.timezone)
+    this.d = spacetime(context.now, context.timezone)
     if (str && quarterNames.hasOwnProperty(str) === true) {
       this.d.quarter(quarterNames[str])
     }
