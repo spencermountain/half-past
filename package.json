@@ -1,8 +1,9 @@
 {
   "name": "sometime",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "natural-language date-parsing in javascript",
-  "main": "./src/index.js",
+  "main": "./builds/sometime.js",
+  "unpkg": "./builds/sometime.min.js",
   "scripts": {
     "watch": "amble ./scratch.js",
     "test": "\"node_modules/.bin/tape\" \"./tests/*.test.js\" | \"node_modules/.bin/tap-dancer\" --color",
