@@ -1,5 +1,16 @@
 
-**WIP**
+<div align="center">
+  <div>WIP</div>
+  <a href="https://npmjs.org/package/sometime">
+    <img src="https://img.shields.io/npm/v/sometime.svg?style=flat-square" />
+  </a>
+  <a href="https://unpkg.com/sometime">
+    <img src="https://badge-size.herokuapp.com/spencermountain/sometime/master/builds/sometime.min.js" />
+  </a>
+</div>
+
+
+**work-in-progress**
 
 rule-based interpreter for natural-language date-forms.
 
@@ -9,9 +20,9 @@ and [compromise](https://github.com/spencermountain/compromise)
 you've been warned!
 
 ### IF YOU DARE:
-`npm install nlp-date`
+`npm install sometime`
 
-### What it does:
+<!-- ### What it does:
 * `"January 8th"` explicit date-forms
 * `"1999-12-25"`  numeric/ISO date-forms
 * `"7:30pm"` NL time-of-day
@@ -40,14 +51,14 @@ you've been warned!
 * `1536602449137` millisecond, or epoch-time as dates
 * force interpretation of british/american (always tries both!)
 * `sometime in June` decide on a soft-date
-* configurable 'last monday' logic
+* configurable 'last monday' logic -->
 
 ### Usage:
 ```js
 var nlp = require('compromise')
-var nlpDate = require('nlp-date')
+var sometime = require('sometime')
 //apply plugin
-nlp.plugin(nlpDate)
+nlp.plugin(sometime)
 
 let context = {
   // what 'today', or 'now' is
@@ -87,7 +98,8 @@ let context = {
   //   '2019-04-01',
   // ],
 }
-nlp('the end of next week').dates().parse(context)
+
+let result=sometime(nlp('june 1st'), context)
 /*
 [{
   start:SpacetimeObject, //you can call .format('iso') or anything you want
@@ -99,11 +111,12 @@ nlp('the end of next week').dates().parse(context)
   },
 }]
 */
-
+console.log(result[0].start.format('iso'))
+// 2018-06-01T11:18:58.040-04:00
 ```
 
 ### How it works
-nlp-date understands natural language date-forms using the following classification:
+sometime understands natural language date-forms using the following classification:
 
 #### Single dates:
 ```
@@ -123,7 +136,7 @@ after [date]
 in [date]
 ```
 
-### Examples:
+<!-- ### Examples:
 ```
   explicit templates
     ✓ "march 2nd"
@@ -304,7 +317,7 @@ soft range - not fully day-defined
 punted week with day
   ✓ two saturdays from now
   ✓ the friday after next  
-```
+``` -->
 
 ### See also
 * [Sugarjs](https://sugarjs.com/dates/) - by Andrew Plummer

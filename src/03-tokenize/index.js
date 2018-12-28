@@ -11,7 +11,7 @@ const tokenize = function(doc, context) {
     if (obj) {
       obj.text = ts.out('text')
       obj.normal = ts.out('normal')
-      console.log('\n' + obj.start.format('eee dd MMM yyyy, h:mma') + '   →   ' + obj.end.format('eee dd MMM yyyy, h:mma') + '\n')
+      // console.log('\n' + obj.start.format('eee dd MMM yyyy, h:mma') + '   →   ' + obj.end.format('eee dd MMM yyyy, h:mma') + '\n')
       // obj.offsets = ts.out('offset')
       results.push(obj)
     }
