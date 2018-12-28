@@ -4,11 +4,13 @@ var fs = require('fs');
 //use paths, so libs don't need a -g
 var browserify = './node_modules/.bin/browserify';
 var derequire = './node_modules/.bin/derequire';
+var terser = './node_modules/.bin/terser';
 var pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 //final build locations
-var banner = '/* spacetime-daylight v' + pkg.version + '\n   github.com/spencermountain/nlp-date\n   MIT\n*/\n';
-var uncompressed = './builds/nlp-date.js';
+var banner = '/* sometime v' + pkg.version + '\n   github.com/spencermountain/sometime\n   MIT\n*/\n';
+var uncompressed = './builds/sometime.js';
+var compressed = './builds/sometime.min.js';
 
 //cleanup. remove old builds
 exec('rm -rf ./builds && mkdir builds');
@@ -17,13 +19,19 @@ exec('rm -rf ./builds && mkdir builds');
 echo(banner).to(uncompressed);
 
 //browserify + derequire
-var cmd = browserify + ' ./src/index.js --standalone nlpDate';
+var cmd = browserify + ' ./src/index.js --standalone sometime';
 cmd += ' -t [ babelify --presets [ @babel/preset-env ] ]';
 cmd += ' | ' + derequire;
 cmd += ' >> ' + uncompressed;
 exec(cmd);
 
+
+//uglify
+cmd = terser + ' ' + uncompressed + ' --mangle --compress ';
+cmd += ' >> ' + compressed;
+exec(cmd);
+
 //print filesizes
-var stats = fs.statSync('./builds/nlp-date.js');
+var stats = fs.statSync(compressed);
 var fileSize = (stats['size'] / 1000.0).toFixed(2);
 console.log('\n\n main: ' + fileSize + 'kb');
