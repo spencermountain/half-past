@@ -18,7 +18,7 @@ echo(banner).to(uncompressed);
 
 //browserify + derequire
 var cmd = browserify + ' ./src/index.js --standalone nlpDate';
-cmd += ' -t [ babelify --presets [ env ] ]';
+cmd += ' -t [ babelify --presets [ @babel/preset-env ] ]';
 cmd += ' | ' + derequire;
 cmd += ' >> ' + uncompressed;
 exec(cmd);
