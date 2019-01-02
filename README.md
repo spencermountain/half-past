@@ -1,11 +1,11 @@
 
 <div align="center">
   <div>WIP</div>
-  <a href="https://npmjs.org/package/sometime">
-    <img src="https://img.shields.io/npm/v/sometime.svg?style=flat-square" />
+  <a href="https://npmjs.org/package/half-past">
+    <img src="https://img.shields.io/npm/v/half-past.svg?style=flat-square" />
   </a>
-  <a href="https://unpkg.com/sometime">
-    <img src="https://badge-size.herokuapp.com/spencermountain/sometime/master/builds/sometime.min.js" />
+  <a href="https://unpkg.com/half-past">
+    <img src="https://badge-size.herokuapp.com/spencermountain/half-past/master/builds/half-past.min.js" />
   </a>
 </div>
 
@@ -20,7 +20,7 @@ and [compromise](https://github.com/spencermountain/compromise)
 you've been warned!
 
 ### IF YOU DARE:
-`npm install sometime`
+`npm install half-past`
 
 <!-- ### What it does:
 * `"January 8th"` explicit date-forms
@@ -56,9 +56,9 @@ you've been warned!
 ### Usage:
 ```js
 var nlp = require('compromise')
-var sometime = require('sometime')
+var halfPast = require('half-past')
 //apply plugin
-nlp.plugin(sometime)
+nlp.plugin(halfPast)
 
 let context = {
   // what 'today', or 'now' is
@@ -99,7 +99,7 @@ let context = {
   // ],
 }
 
-let result=sometime(nlp('june 1st'), context)
+let result=halfPast(nlp('june 1st'), context)
 /*
 [{
   start:SpacetimeObject, //you can call .format('iso') or anything you want
@@ -116,7 +116,7 @@ console.log(result[0].start.format('iso'))
 ```
 
 ### How it works
-sometime understands natural language date-forms using the following classification:
+half-past understands natural language date-forms using the following classification:
 
 #### Single dates:
 ```

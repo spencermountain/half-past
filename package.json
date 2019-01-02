@@ -1,5 +1,5 @@
 {
-  "name": "sometime",
+  "name": "half-past",
   "version": "0.0.3",
   "description": "natural-language date-parsing in javascript",
   "main": "./builds/sometime.js",

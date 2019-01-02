@@ -8,9 +8,9 @@ var terser = './node_modules/.bin/terser';
 var pkg = JSON.parse(fs.readFileSync('./package.json', 'utf8'));
 
 //final build locations
-var banner = '/* sometime v' + pkg.version + '\n   github.com/spencermountain/sometime\n   MIT\n*/\n';
-var uncompressed = './builds/sometime.js';
-var compressed = './builds/sometime.min.js';
+var banner = '/* half-past v' + pkg.version + '\n   github.com/spencermountain/half-past\n   MIT\n*/\n';
+var uncompressed = './builds/half-past.js';
+var compressed = './builds/half-past.min.js';
 
 //cleanup. remove old builds
 exec('rm -rf ./builds && mkdir builds');
@@ -19,7 +19,7 @@ exec('rm -rf ./builds && mkdir builds');
 echo(banner).to(uncompressed);
 
 //browserify + derequire
-var cmd = browserify + ' ./src/index.js --standalone sometime';
+var cmd = browserify + ' ./src/index.js --standalone halfPast';
 cmd += ' -t [ babelify --presets [ @babel/preset-env ] ]';
 cmd += ' | ' + derequire;
 cmd += ' >> ' + uncompressed;
