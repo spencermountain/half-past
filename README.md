@@ -1,3 +1,5 @@
+<h2>Deprecated: see <a href="https://github.com/spencermountain/compromise/tree/master/plugins/dates">compromise-plugin-dates</a> for a more-developed lilbrary</h2>
+
 
 <div align="center">
   <div>WIP</div>
